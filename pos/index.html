@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dimond Printing</title>
+<style>
+:root {
+  --bg:#0b0f14; --card:#111827; --muted:#94a3b8; --text:#fefce8;
+  --accent:#facc15; --accent2:#fbbf24; --ok:#10b981;
+}
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  background: linear-gradient(135deg,#140b11 0%,#1e1b4b 60%,#0b0f14 100%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  background-image: url("imagem/up.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 9px var(--accent),
+              0 0 0px var(--accent2),
+              inset 0 0 10px rgba(250, 191, 36, .5);
+}
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.search {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: 100%;
+  margin-top: 8px;
+}
+.search input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid #4b5563;
+  background: #0b1220;
+  color: var(--text);
+  outline: none;
+}
+.search input::placeholder {
+  color: #a1a1aa;
+}
+.pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #0b1220;
+  border: 1px solid #4b5563;
+  color: #fef9c3;
+  font-size: 0.8rem;
+}
+.lang-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,#facc15,#fbbf24);
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  margin-top: 8px;
+}
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,.25);
+  background: #0b1220;
+  color: #fefce8;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.chip.active {
+  background: linear-gradient(90deg,rgba(250,204,21,.25),rgba(251,191,36,.25));
+  border-color: rgba(250,204,21,.5);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.card {
+  position: relative;
+  background: linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+  border: 1px solid rgba(250,204,21,.4);
+  padding: 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(250,204,21,.4), 0 0 20px rgba(242, 176, 7, 0.3);
+  transition: transform .1s ease, box-shadow .2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+.img {
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  background: #0b1220 center/cover no-repeat;
+  border: 0.2px solid rgba(250,204,21,.3);
+}
+.name {
+  margin: 8px 0 4px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  min-height: 36px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.price {
+  font-weight: 800;
+  color: #fde68a;
+  font-size: 0.9rem;
+}
+.btn {
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(250,204,21,.4);
+  background: linear-gradient(180deg,#facc15,#fbbf24);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.notice {
+  margin-top: 12px;
+  border: 1px dashed rgba(250,204,21,.5);
+  padding: 10px;
+  border-radius: 10px;
+  color: #fef9c3;
+  background: rgba(10,15,25,.5);
+  font-size: 0.85rem;
+}
+footer {
+  margin: 24px 0 8px;
+  text-align: center;
+  color: #fef9c3;
+  font-size: 0.85rem;
+}
+@media (max-width: 600px) {
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <div class="title" id="shopTitle">Dimond Shop</div>
+        <div id="subtitle" style="color:#fef9c3;font-size:.9rem">All items in one place</div>
+      </div>
+    </div>
+    <div class="search">
+      <input id="search" placeholder="Search items…" />
+      <span class="pill" id="count">0 items</span>
+    </div>
+    <button class="lang-btn" id="langToggle">كوردی</button>
+  </header>
+
+  <div class="filters" id="filters"></div>
+  <section class="grid" id="grid"></section>
+  <div class="notice" id="notice"></div>
+  <footer>© <span id="yr"></span> Dimond — Group ♥️</footer>
+</div>
+
+<script>
+const ITEMS = [
+  {id:1, name_en:"Business Card", name_ku:"کارتە بازرگانییەکان", price:"10,000 IQD",img:"imagem/card.jpg" ,desc_en:"Premium matte, double-sided.", desc_ku:"کوالێتی بەرز، دوو لا.", category_en:"Print", category_ku:"چاپ"},
+  {id:2, name_en:"Payment Receipt", name_ku:"وەسڵی پارەدان", price:"5,000 IQD", img:"imagem/wasl.jpg", desc_en:"Clean, professional design.", desc_ku:"دیزاینی پاک و پیشەیی.", category_en:"Print", category_ku:"چاپ"},
+  {id:3, name_en:"role - up", name_ku:" رۆڵ ئاپ ", price:"25,000 IQD", img:"imagem/up.jpg", desc_en:"Strong & weatherproof.", desc_ku:"بەهێز و بەرگری لە هەوا.", category_en:"Signage", category_ku:"ئاگادارکردنەوە"},
+  {id:4, name_en:"Pen with Dimond Sticker", name_ku:"قەلەم بە ستیكەری دایمۆند", price:"3,000 IQD", img:"imagem/qalam.jpg", desc_en:"Smooth writing, gold diamond logo.", desc_ku:"نووسینی ئاسان، لوگۆی دیەمۆندی زێڕین.", category_en:"Branding", category_ku:"براند"},
+  {id:5, name_en:"T-Shirt Design (Diamond Logo Back)", name_ku:"تی‌شێرت بە لوگۆی دیەمۆند لە پشت", price:"15,000 IQD", img:"imagem/shirt.jpg", desc_en:"Printed with gold diamond.", desc_ku:"چاپکراو بە دیەمۆندی زێڕین.", category_en:"Apparel", category_ku:"جل و برگە"},
+];
+let lang = "en";
+let activeCat = "All";
+const grid = document.getElementById('grid');
+const count = document.getElementById('count');
+const search = document.getElementById('search');
+const filters = document.getElementById('filters');
+const langToggle = document.getElementById('langToggle');
+const shopTitle = document.getElementById('shopTitle');
+const subtitle = document.getElementById('subtitle');
+const notice = document.getElementById('notice');
+
+function getCategories(){
+  const key = lang==="en" ? "category_en" : "category_ku";
+  const cats = Array.from(new Set(ITEMS.map(i=>i[key])));
+  return lang==="en" ? ["All",...cats] : ["هەموو",...cats];
+}
+function renderFilters(){
+  filters.innerHTML = '';
+  getCategories().forEach(cat=>{
+    const b = document.createElement('button');
+    b.textContent = cat;
+    b.className = 'chip' + (cat===activeCat?' active':'');
+    b.onclick = ()=>{
+      activeCat = cat;
+      render();
+      renderFilters();
+    };
+    filters.appendChild(b);
+  });
+}
+function render(){
+  const q = search.value.toLowerCase().trim();
+  const nameKey = lang==="en" ? "name_en" : "name_ku";
+  const descKey = lang==="en" ? "desc_en" : "desc_ku";
+  const catKey = lang==="en" ? "category_en" : "category_ku";
+  const allLabel = lang==="en" ? "All" : "هەموو";
+  
+  const data = ITEMS.filter(i=>
+    (activeCat===allLabel || i[catKey]===activeCat) &&
+    (i[nameKey].toLowerCase().includes(q) || i[catKey].toLowerCase().includes(q))
+  );
+  count.textContent = data.length + (lang==="en" ? (data.length===1?' item':' items') : ' کاڵا');
+  grid.innerHTML = data.map(i=> `
+    <article class="card">
+      <div class="img" style="background-image:url('${i.img}')"></div>
+      <h3 class="name">${i[nameKey]}</h3>
+      <p class="desc">${i[descKey]}</p>
+      <div class="row">
+        <div class="price">${i.price}</div>
+        <a class="btn" href="https://wa.me/9647505890209?text=${encodeURIComponent((lang==="en"?"Hi, I want ":"سڵاو، دەمەوێ ") + i[nameKey] + ' (' + i.price + ')')}" target="_blank" rel="noopener">${lang==="en"?"Buy":"کڕین"}</a>
+      </div>
+    </article>
+  `).join('');
+}
+langToggle.addEventListener('click', ()=>{
+  lang = (lang==="en"?"ku":"en");
+  activeCat = lang==="en" ? "All" : "هەموو";
+  search.value = '';
+  langToggle.textContent = lang==="en" ? "كوردی" : "English";
+  shopTitle.textContent = lang==="en" ? "Dimond Shop" : "فرۆشگای دیەمۆند";
+  subtitle.textContent = lang==="en" ? "All items in one place" : "هەموو کاڵاکان لە یەک شوێند";
+  renderFilters();
+  render();
+});
+search.addEventListener('input', render);
+document.getElementById('yr').textContent = new Date().getFullYear();
+renderFilters();
+render();
+</script>
+</body>
+</html>

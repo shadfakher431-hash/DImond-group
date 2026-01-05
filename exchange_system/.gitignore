@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Database exports
+exports/*.sql
+exports/*.zip
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Cache
+cache/
+*.cache
+
+# Session files
+sessions/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# PHP
+composer.phar
+composer.lock
+
+# Database
+*.sqlite
+*.db
+
+# Config (if contains sensitive data)
+# config/config.php
